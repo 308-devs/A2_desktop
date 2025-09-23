@@ -18,9 +18,11 @@ void draw() {
        for(int j = 0; j < 9;j++){ 
            line(i*space,j*space+space,i*space+space,j*space+space);
            line(i*space+space,j*space,i*space+space,j*space+space);
-           fill(0);
-           textSize(18);
-           text(number[i][j],i*space+space/2,j*space+space/2);
+           if(number[i][j] != 0){
+               fill(0);
+               textSize(18);
+               text(number[i][j],i*space+space/2,j*space+space/2);
+           }
            if (mousePressed == true && !clicked) {
                if (mouseX > (i)*space && mouseX < (i+1)*space && mouseY > (j)*space && mouseY < (j)*space+space ){
                    number[i][j] = number[i][j] +1;
