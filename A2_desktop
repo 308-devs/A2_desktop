@@ -31,10 +31,17 @@ void draw() {
            }
            if (mousePressed == true && !clicked) {
                if (mouseX > (i)*space && mouseX < (i+1)*space && mouseY > (j)*space && mouseY < (j)*space+space ){
-                   number[i][j] = number[i][j] +1;
-                   clicked = true;
-                   if(number[i][j] > 9){
+                  if(mouseButton == LEFT){
+                       number[i][j] = number[i][j] +1;
+                       clicked = true;
+                  }else if(mouseButton == RIGHT){
+                      number[i][j] = number[i][j] -1;
+                      clicked = true;
+                  }
+                   if(number[i][j] > 9 ){
                        number[i][j] = 0;
+                   }else if(number[i][j] < 1 ){
+                       number[i][j] = 9;
                    }
                }
            }
