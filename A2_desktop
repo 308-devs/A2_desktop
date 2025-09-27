@@ -32,8 +32,12 @@ void draw() {
            strokeWeight(1);
            line(i*space,j*space+space,i*space+space,j*space+space);
            line(i*space+space,j*space,i*space+space,j*space+space);
-           if(number[i][j] != 0){
+           if (locked[i][j]) {
                fill(0);
+           }else{
+               fill(0, 0, 255);
+           }
+           if(number[i][j] != 0){
                textSize(18);
                text(number[i][j],i*space+space/2,j*space+space/2);
            }
