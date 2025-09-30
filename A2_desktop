@@ -21,7 +21,7 @@ void setup() {
 }
 void draw() {
     background(255);
-    float space = width/9;
+    int space = (width/9)+1;
     strokeWeight(3);
     line(0,2*space+space,width,2*space+space);
     line(0,5*space+space,width,5*space+space);
