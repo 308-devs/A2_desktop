@@ -11,22 +11,26 @@ number = [
 ]
 locked = [[False for _ in range(9)]for _ in range(9)]
 clicked = False
+selectednum = 0
 def setup():
-    size(500,500)
+    size(500,700)
     for row in range(9):
         for col in range(9):
             if number[row][col]  != 0:
                 locked[row][col] = True
 
 def draw():
-    global clicked
+    global clicked,selectednum
     background(255)
     space = 56
+    selectevalue()
     strokeWeight(3)
     line(0,3*space,500,3*space)
     line(0,6*space,500,6*space)
     line(3*space,0,3*space,500)
     line(6*space,0,6*space,500)
+    fill(0,255,0)
+    text(selectednum,mouseX,mouseY)
     for row in range(9):
         for col in range(9):
             x = col * space
@@ -45,19 +49,31 @@ def draw():
                 text(str(number[row][col]),x+space/2,y+space/2)
             if mousePressed and not clicked and not locked[row][col]:
                 if mouseX > x and mouseX < x+space and mouseY > y and mouseY < y+space:
-                    if  mouseButton == LEFT:
-                       number[row][col] = number[row][col] +1
-                       clicked = True
-                    elif mouseButton == RIGHT:
-                        number[row][col] = number[row][col] -1
-                        clicked = True
-                    if number [row][col] > 9:
-                        number[row][col] = 1
-                    elif number[row][col] < 1:
-                        number[row][col] = 9
+                    number[row][col] = selectednum
+                    clicked = True
+    
                         
                         
-                        
+def selectevalue():
+    global clicked,selectednum
+    space = 50
+    for i in range(10):
+        x = i*space
+        y = height*0.8
+        textSize(18)
+        if selectednum == i:
+            fill(0,255,0)
+        else:
+            fill(0)
+        text(str(i),x+space/2,y+space/2)
+        line(x, y + space, x + space, y + space)
+        line(x, y, x + space, y)
+        line(x + space, y, x + space, y + space)
+        if mousePressed and not clicked:
+            if mouseX > x and mouseX < x+space and mouseY > y and mouseY < y + space:
+                selectednum = i
+                clicked = True
+                               
 def mouseReleased():
     global clicked
     clicked = False
@@ -85,3 +101,5 @@ def validtobe(checknum,checknumrow,checknumcol):
             col = startcol + j
             if number[row][col] == checknum and (checknumrow != row or checknumcol != col):
                 return True
+
+            
