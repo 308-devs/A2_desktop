@@ -29,9 +29,11 @@ def draw():
     line(6*space,0,6*space,500)
     for row in range(9):
         for col in range(9):
+            x = col * space
+            y = row * space
             strokeWeight(1)
-            line(row*space,col*space+space,row*space+space,col*space+space)
-            line(row*space+space,col*space,row*space+space,col*space+space)
+            line(x, y + space, x + space, y + space)
+            line(x + space, y, x + space, y + space)
             if validtobe(number[row][col],row,col):
                 fill(255,0,0)
             elif locked [row][col]:
@@ -40,9 +42,9 @@ def draw():
                 fill(0,0,255)
             if number[row][col] != 0:
                 textSize(18)
-                text(str(number[row][col]),row*space+space/2,col*space+space/2)
+                text(str(number[row][col]),x+space/2,y+space/2)
             if mousePressed and not clicked and not locked[row][col]:
-                if mouseX > (row)*space and mouseX < (row+1)*space and mouseY > (col)*space and mouseY < (col)*space+space:
+                if mouseX > x and mouseX < x+space and mouseY > y and mouseY < y+space:
                     if  mouseButton == LEFT:
                        number[row][col] = number[row][col] +1
                        clicked = True
