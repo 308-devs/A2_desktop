@@ -24,7 +24,7 @@ def draw():
     space = 56
     strokeWeight(3)
     line(0,3*space,500,3*space)
-    line(0,6*space,500,6*space+space)
+    line(0,6*space,500,6*space)
     line(3*space,0,3*space,500)
     line(6*space,0,6*space,500)
     for row in range(9):
