@@ -32,10 +32,10 @@ def draw():
             strokeWeight(1)
             line(row*space,col*space+space,row*space+space,col*space+space)
             line(row*space+space,col*space,row*space+space,col*space+space)
-            if locked [row][col]:
-               fill(0)
-            elif validtobe(number[row][col],row,col):
+            if validtobe(number[row][col],row,col):
                 fill(255,0,0)
+            elif locked [row][col]:
+               fill(0)
             else:
                 fill(0,0,255)
             if number[row][col] != 0:
@@ -62,14 +62,24 @@ def mouseReleased():
     
 def validtobe(checknum,checknumrow,checknumcol):
     global number
-    notvalid = False
+    if checknum == 0:
+        return False
     ## check row
     for col in range(9):
         if number[checknumrow][col] == checknum and checknumcol != col:
-            notvalid = True
+            return True
     ## check col
     for row in range(9):
         if number[row][checknumcol] == checknum and checknumrow != row:
-            notvalid = True
-    return notvalid
+            return True
             
+            
+    ##subgrid check
+    startrow = (checknumrow//3)*3
+    startcol = (checknumcol//3)*3
+    for i in range(3):
+        for j in range(3):
+            row = startrow + i
+            col = startcol + j
+            if number[row][col] == checknum and (checknumrow != row or checknumcol != col):
+                return True
