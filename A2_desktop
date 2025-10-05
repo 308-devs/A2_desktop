@@ -38,14 +38,16 @@ def draw():
             strokeWeight(1)
             line(x, y + space, x + space, y + space)
             line(x + space, y, x + space, y + space)
-            if validtobe(number[row][col],row,col):
+            if validtobe(number[row][col],row,col) and locked [row][col]:
+                fill(230,200,0)
+            elif validtobe(number[row][col],row,col):
                 fill(255,0,0)
             elif locked [row][col]:
-               fill(0)
+                fill(0)
             else:
                 fill(0,0,255)
             if number[row][col] != 0:
-                textSize(18)
+                textSize(24)
                 text(str(number[row][col]),x+space/2,y+space/2)
             if mousePressed and not clicked and not locked[row][col]:
                 if mouseX > x and mouseX < x+space and mouseY > y and mouseY < y+space:
@@ -60,7 +62,7 @@ def selectevalue():
     for i in range(10):
         x = i*space
         y = height*0.8
-        textSize(18)
+        textSize(24)
         if selectednum == i:
             fill(0,255,0)
         else:
