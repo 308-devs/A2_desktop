@@ -61,12 +61,13 @@ def mouseReleased():
     clicked = False
     
 def validtobe(checknum,checknumrow,checknumcol):
-    ## check row
     global number
     notvalid = False
+    ## check row
     for col in range(9):
         if number[checknumrow][col] == checknum and checknumcol != col:
             notvalid = True
+    ## check col
     for row in range(9):
         if number[row][checknumcol] == checknum and checknumrow != row:
             notvalid = True
