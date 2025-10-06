@@ -14,7 +14,7 @@ def draw():
     global clicked,selectednum
     background(255)
     space = 56
-    selectevalue()
+    selectedvalue()
     strokeWeight(3)
     line(0,3*space,500,3*space)
     line(0,6*space,500,6*space)
@@ -55,7 +55,7 @@ def loadboard(filepath):
     file.close()
     return board
                                         
-def selectevalue():
+def selectedvalue():
     global clicked,selectednum
     space = 50
     for i in range(10):
